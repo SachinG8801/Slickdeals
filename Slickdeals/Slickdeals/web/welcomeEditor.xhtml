@@ -1,0 +1,205 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" 
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+<head>
+<title>Slick deals: The Best Deals</title>
+<link href="style.css" rel="stylesheet" type="text/css"/>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/css/bootstrap.min.css"/>
+<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css"/>
+<link rel="preconnect" href="https://fonts.gstatic.com"/>
+<link href="https://fonts.googleapis.com/css?family=Roboto&amp;display=swap" rel="stylesheet"/>
+<link rel="preconnect" href="https://fonts.gstatic.com"/>
+<link href="https://fonts.googleapis.com/css2?family=Archivo+Black&amp;family=Raleway&amp;display=swap" rel="stylesheet"/>
+<script src="//code.jquery.com/jquery-1.12.0.min.js"/>
+<script src="//code.jquery.com/jquery-migrate-1.2.1.min.js"/>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js" integrity="sha384-0mSbJDEHialfmuBBQP6A4Qrprq5OVfW37PRR3j5ELqxss1yVqOtnepnHVP9aJ7xS" crossorigin="anonymous"/>
+<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+</head>
+<style>
+body
+{
+background-color: #E3E7ED;
+margin: 0;
+}
+.search-form
+	{
+	background-color: #E3E7ED;
+	margin-top: 5px;
+	color: #000000;
+	float: right;
+	margin-right: 100px
+	}
+	input[type=text]
+	{
+	background-color: #E3E7ED;
+	color: #000000;
+	padding: 7px;
+	border: none;
+	font-size: 16px;
+	font-family: sans-seriff;
+	}
+	
+	button
+	{
+	border: none;
+	background-color: #E3E7ED;
+	color: #000000;
+	border-radius: 0 5px 5px 0;
+	cursor: pointer;
+	}
+        .col-sm{
+    flex-basis: 25%;
+    padding: 10px;
+    min-width: 200px;
+    margin-bottom: 50px;
+    transition: transform 0.5s;
+    text-align: center;
+    padding: 40px 20px;
+    cursor: pointer;        
+    box-shadow: 0 0 20px 0px #000000;
+    background-color: #ffffff;
+    margin-left: 40px;
+    margin-right: 40px;
+
+}
+</style> 
+
+<body>
+<section id="nav-bar"> 
+<nav class="navbar navbar-expand-lg navbar-light">
+  <a class="navbar-brand" href="index.xhtml"><img src="https://static.slickdealscdn.com/images/header/slickdealsLogo.png?8418"/></a>
+
+  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+    <span class="navbar-toggler-icon"></span>
+  </button>
+  <div class="collapse navbar-collapse" id="navbarNav">
+    <ul class="navbar-nav">
+      <li class="nav-item active">
+        <a class="nav-link" href="welcome.xhtml">Home<span class="sr-only"></span></a>
+      </li>
+      <li class="nav-item">
+          <a class="nav-link" href="reviewDeals.xhtml">Review Deals</a>
+      </li>
+      <li class="nav-item">
+          <a class="nav-link" href="forums.xhtml">Forums</a>
+      </li>
+    </ul>
+   </div>
+	
+	<ul class="navbar-nav ml-auto">
+	<form class="form-inline my-2 my-lg-0">
+      <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search"/>
+      <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
+      </form>
+   
+     <li><p>Welcome, #{userFunctions.id}</p></li>
+            <h:form>
+            <li class="nav-item ">  <h:commandButton id="LogOut" value="logout"  
+                                                     action="#{userFunctions.userAccount.logout()}" />
+          </li>
+            </h:form>  
+        </ul>
+</nav>
+</section>
+    <div class="container">
+                     <h3 class="title"> Specially picked for you</h3>
+            <h:dataTable id="dealList" value="#{userFunctions.userAccount.showAllDealsAboveTwoStars()}" var="deal"
+                         style=" margin-left: 170px">       
+                <h:column> 
+                     <div class="small-container">
+                             <div class="row">
+                                    <div class="col-sm">
+                    <p:graphicImage style="width:300px;height: 300px;"
+                             value = "#{deal.img_url}"/> 
+                  
+                    <div>   
+                        <h:form>
+                        <h:commandLink style="font-size:50px;font-family: 'Raleway', sans-serif; "  value="#{deal.title}" action="#{userFunctions.userAccount.selectDeal(deal.dealId)}"/>
+                        </h:form>
+                    </div>
+                    <div style="font-family: 'Archivo Black', sans-serif;">
+                         <h:outputText  style="font-size:22px;margin:-1px; color: red"
+                           value = "$#{deal.price} "/>
+                         <h:outputText  style="font-size:22px;margin:-1px; "
+                                        value = " Rating: #{deal.rating} *"/>
+                    </div>
+            <h:outputText  style="font-size:30px;"
+                           value = "#{deal.desciption}"/>   
+            </div>
+                   </div>
+                            
+            </div>
+        </h:column>  
+        </h:dataTable>
+    </div>
+                     <h3 class="title"> Few responses from our customers</h3>
+   <div class="container">
+    <h:dataTable id="testimonial" value="#{userFunctions.userAccount.displayTestimonials()}" var="feedback">     
+        <h:column>   
+            
+            <div class="testimonial">                   
+                        <div class="row">             
+                            <div class="col-sm">   
+                                
+                                 <i style="font-weight: bold;" class="fa fa-quote-left"></i>
+                                 <div>
+                                     <h:outputText value = "#{feedback.message} "/>
+                                 </div>
+                                 <div>
+                                     <h:outputText style="font-weight: bold;" value = "#{feedback.experience} "/>
+                                 </div>
+                                 <div>
+                                                     <h:outputText style="font-weight: bold;" value = "#{feedback.user_id} "/>
+                                 </div>
+                            </div>
+                        </div>    
+            </div> 
+        </h:column>               
+   </h:dataTable>
+   </div>
+                     <h3 class="title"> Write us your review by clicking on the feedback link below.</h3>   
+ <footer>
+        <div class="pageend">
+            <div class="container">
+                <div class="row">
+                    <div class="col">
+                        <br />
+                        <ul class="details">
+                            <h2 class="heading"><b>About</b></h2>
+                            <li><a action="#" style="color:white">About Us </a></li>
+                            <li> <a action="#" style="color:white">Careers</a></li>
+                        </ul>
+
+                    </div>
+                    <div class="col">
+                        <br />
+                        <ul class="details">
+                            <h2 class="heading"><b>Follow Us</b></h2>
+                            <li> <a action="#" style="color:white">Twitter</a></li>
+                            <li> <a action="#" style="color:white">Facebook</a></li>
+                            <li> <a action="#" style="color:white"> Instagram</a></li>
+                        </ul>
+                    </div>
+                    <div class="col">
+                        <br />
+                        <ul class="details">
+                            <h2 class="heading"><b>Support</b></h2>
+                            <li><a href="feedback.xhtml" style="color:white">Feedback</a></li>
+                        </ul>
+                    </div>
+                </div>
+                <img src="https://static.slickdealscdn.com/images/header/slickdealsLogo.png?8418"/>
+            </div>
+            <h1 id="copyright"> &copy; All rights reserved.</h1>
+            <h1 id="copyright"> Bhagyashree | Sandeep | Harshith </h1>
+        </div>
+    </footer> 
+</body>
+</html>

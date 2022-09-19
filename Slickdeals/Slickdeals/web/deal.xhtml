@@ -1,0 +1,218 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" 
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:c="http://xmlns.jcp.org/jsp/jstl/core"
+      xmlns:p="http://primefaces.org/ui">
+<head>
+<title>Slick deals: The Best Deals</title>
+<link rel="stylesheet" href="style.css"/>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/css/bootstrap.min.css"/>
+<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.12.1/css/all.css" crossorigin="anonymous"/>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/js/bootstrap.min.js"></script>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/css/bootstrap.min.css"/>
+<link rel="preconnect" href="https://fonts.gstatic.com"/>
+<link href="https://fonts.googleapis.com/css?family=Roboto&amp;display=swap" rel="stylesheet"/>
+<link rel="preconnect" href="https://fonts.gstatic.com"/>
+<link href="https://fonts.googleapis.com/css2?family=Archivo+Black&amp;family=Raleway&amp;display=swap" rel="stylesheet"/>
+<!-- First include jquery js -->
+<script src="//code.jquery.com/jquery-1.12.0.min.js"/>
+<script src="//code.jquery.com/jquery-migrate-1.2.1.min.js"/>
+ <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+<!-- Then include bootstrap js -->
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js" integrity="sha384-0mSbJDEHialfmuBBQP6A4Qrprq5OVfW37PRR3j5ELqxss1yVqOtnepnHVP9aJ7xS" crossorigin="anonymous"/>
+ <!-- Optional JavaScript -->
+    <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+</head>
+    <style>
+body
+{
+background-color: #E3E7ED;
+margin: 0;
+}
+.search-form
+	{
+	background-color: #E3E7ED;
+	margin-top: 5px;
+	color: #000000;
+	float: right;
+	margin-right: 100px
+	}
+	input[type=text]
+	{
+	background-color: #E3E7ED;
+	color: #000000;
+	padding: 7px;
+	border: none;
+	font-size: 16px;
+	font-family: sans-seriff;
+	}
+	
+	button
+	{
+	border: none;
+	background-color: #E3E7ED;
+	color: #000000;
+	border-radius: 0 5px 5px 0;
+	cursor: pointer;
+	}
+</style> 
+
+<body>
+<section id="nav-bar"> 
+<nav class="navbar navbar-expand-lg navbar-light">
+    <a class="navbar-brand" href="index.xhtml"><img src="https://static.slickdealscdn.com/images/header/slickdealsLogo.png?8418"/></a>
+
+  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+    <span class="navbar-toggler-icon"></span>
+  </button>
+  <div class="collapse navbar-collapse" id="navbarNav">
+    <ul class="navbar-nav">
+      <li class="nav-item active">
+        <a class="nav-link" href="welcome.xhtml">Home<span class="sr-only"></span></a>
+      </li>
+
+      <li class="nav-item">
+          <a class="nav-link" href="forums.xhtml">forums</a>
+      </li>
+    </ul>
+   </div>	
+	<ul class="navbar-nav ml-auto">
+	<form class="form-inline my-2 my-lg-0">
+        <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search"/>
+        <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
+        </form>
+   
+       <li><p>Welcome, #{userFunctions.id}</p></li>
+        <h:form>
+            <li class="nav-item ">  <h:commandButton id="LogOut" value="logout"  
+                                                     action="#{userFunctions.userAccount.logout()}" />
+          </li>
+            </h:form>  
+      </ul>
+</nav>
+   
+</section>
+    <div class="jumbotron"> 
+     <h:dataTable value="#{userFunctions.userAccount.showDeal()}" var="deal">
+        <h:column>             
+            <h:outputText style="font-size:50px;font-family: 'Raleway', sans-serif;" value="#{deal.title}"/>
+            <div>
+            <h:outputText  style="font-size:25px;margin:104px;font-family: 'Archivo Black', sans-serif;"
+                           value = "$#{deal.price} "/>
+            </div>
+        </h:column>         
+    </h:dataTable>
+    <div class="container">
+    <h:dataTable value="#{userFunctions.userAccount.showDeal()}" var="deal">
+        <h:column>            
+            <h:outputText  style="font-size:30px;font-family: 'Raleway', sans-serif;"
+                           value = "#{deal.desciption}"/> 
+            <div>
+            <h:outputText  style="font-size:25px;margin: 104px;font-family: 'Archivo Black', sans-serif;color: red"
+                          value = "Has a rating of: #{deal.rating} *"/>
+            </div>
+        </h:column>  
+    </h:dataTable>
+    
+     <h:dataTable value="#{userFunctions.userAccount.showDeal()}" var="deal">
+        <h:column>            
+            <h:graphicImage  styleClass="logo" style="width:243px;"
+                             value = "#{deal.img_url}"/> 
+        </h:column>  
+    </h:dataTable>       
+   </div>
+ </div> 
+   <p>      
+         <a class="btn btn-info" href="comment.xhtml"> Add comment</a>
+    </p> 
+        <div class="addrating">
+  <!-- Thumbs up -->
+          <div class="like grow">
+              <i class="fa fa-thumbs-up fa-3x like" onclick="#{userFunctions.userAccount.increaseRating()}" aria-hidden="true">+1
+          
+              </i>
+     </div>
+  <!-- Thumbs down -->
+             <div class="dislike grow">
+          <i class="fa fa-thumbs-down fa-3x like" onclick="#{userFunctions.userAccount.decreaseRating()}" aria-hidden="true" > -1</i>
+            </div>
+          </div>
+
+    <div class="row" style="margin-top: 25px;">
+        <div class="panel panel-default widget">
+            <div class="panel-heading">
+                <span class="glyphicon glyphicon-comment"></span>
+                <h3 class="panel-title">
+                    Recent Comments</h3>
+            </div>
+        </div>
+    </div>
+    <div class="panel-body" >
+                <ul class="list-group">
+                    <li class="list-group-item" style="margin-bottom: 0;
+    border-bottom-right-radius: 100px;
+    border-bottom-left-radius: 4px;
+    margin-top: -36px;">
+                        <div class="row">
+                            <div class="col-xs-10 col-md-11">
+                               <div class="mic-info">
+                                    <h:dataTable value="#{userFunctions.userAccount.reply_thread()}" var="replies" rows="#{userFunctions.userAccount.reply_thread().size()}">
+                                         <h:column>             
+                                                 <h:outputText value="#{replies.message}" style="font-size:25px;padding: 40px"/>
+                                          </h:column>                                  
+                                         <h:column>             
+                                             <h:outputText value="By: #{replies.user_id} On: #{replies.reply_date}" style="font-size:20px"/>
+                                          </h:column> 
+                                   </h:dataTable> 
+                                </div>
+                            </div>
+                        </div>
+                    </li>
+                </ul>
+    </div>
+    <footer>
+        <div class="pageend">
+            <div class="container">
+                <div class="row">
+                    <div class="col-sm">
+                        <br />
+                        <ul class="details">
+                            <h2 class="heading"><b>About</b></h2>
+                            <li><a action="#" style="color:white">About Us </a></li>
+                            <li> <a action="#" style="color:white">Careers</a></li>
+                        </ul>
+
+                    </div>
+                    <div class="col-sm">
+                        <br />
+                        <ul class="details">
+                            <h2 class="heading"><b>Follow Us</b></h2>
+                            <li> <a action="#" style="color:white">Twitter</a></li>
+                            <li> <a action="#" style="color:white">Facebook</a></li>
+                            <li> <a action="#" style="color:white"> Instagram</a></li>
+                        </ul>
+
+                    </div>
+                    <div class="col-sm">
+                        <br />
+                        <ul class="details">
+                            <h2 class="heading"><b>Support</b></h2>
+                            <li><a href="feedback.xhtml" style="color:white">Feedback</a></li>
+                        </ul>
+                    </div>
+                </div>
+                <img src="https://static.slickdealscdn.com/images/header/slickdealsLogo.png?8418"/>
+            </div>
+            <h1 id="copyright"> &copy; All rights reserved.</h1>
+            <h1 id="copyright"> Bhagyashree | Sandeep | Harshith </h1>
+        </div>
+    </footer> 
+</body>
+</html>
